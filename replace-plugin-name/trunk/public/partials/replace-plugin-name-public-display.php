@@ -5,11 +5,9 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       replace_plugin_url
- * @since      1.0.0
+ * @since 1.0.0
  *
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/public/partials
+ * @package Replace_Plugin_Name/public
  */
 ?>
 

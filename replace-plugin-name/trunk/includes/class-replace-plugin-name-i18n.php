@@ -3,42 +3,39 @@
 /**
  * Define the internationalization functionality
  *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
+ * Loads and defines the internationalization files for this plugin so that it
+ * is ready for translation.
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @since 1.0.0
  *
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/includes
+ * @package Replace_Plugin_Name
  */
 
 /**
  * Define the internationalization functionality.
  *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
+ * Loads and defines the internationalization files for this plugin so that it
+ * is ready for translation.
  *
- * @since      1.0.0
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/includes
- * @author     Replace Author Name <replace-author-email>
+ * @since 1.0.0
  */
 class Replace_Plugin_Name_i18n {
 
 	/**
 	 * The domain specified for this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $domain    The domain identifier for this plugin.
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $domain The domain identifier for this plugin.
 	 */
 	private $domain;
 
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
+	 *
+	 * @see load_plugin_textdomain()
 	 */
 	public function load_plugin_textdomain() {
 
@@ -53,8 +50,10 @@ class Replace_Plugin_Name_i18n {
 	/**
 	 * Set the domain equal to that of the specified domain.
 	 *
-	 * @since    1.0.0
-	 * @param    string    $domain    The domain that represents the locale of this plugin.
+	 * @since 1.0.0
+	 *
+	 * @param string $domain The domain that represents the locale of this
+	 *                       plugin.
 	 */
 	public function set_domain( $domain ) {
 		$this->domain = $domain;

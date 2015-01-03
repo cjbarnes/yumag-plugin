@@ -3,11 +3,9 @@
 /**
  * Fired during plugin activation
  *
- * @link       replace_plugin_url
- * @since      1.0.0
+ * @since 1.0.0
  *
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/includes
+ * @package Replace_Plugin_Name
  */
 
 /**
@@ -15,10 +13,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/includes
- * @author     Replace Author Name <replace-author-email>
+ * @since 1.0.0
  */
 class Replace_Plugin_Name_Activator {
 
@@ -27,7 +22,7 @@ class Replace_Plugin_Name_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
 	 */
 	public static function activate() {
 

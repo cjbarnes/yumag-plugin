@@ -7,6 +7,8 @@ This is a fork of the excellent [WordPress Plugin Boilerplate](http://wppb.io) w
 1. All instances of 'plugin-name' etc. can be reliably find-and-replaced across the site.
 2. Added `Replace_Plugin_Name_Common` class for hooks that run in both admin and public areas.
 3. Uses the [Singleton pattern](http://www.phptherightway.com/pages/Design-Patterns.html) for the main plugin class.
+4. Adds a `write_log()` wrapper for the error log, which allows easier PHP debugging.
+5. Tweaks code comment styling to better match the [Core PHP Documentation Standards](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/#4-hooks-actions-and-filters) and my own preferences (e.g. 80 character limit where possible). 
 
 ## Installation
 

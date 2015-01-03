@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Provide a dashboard view for the plugin
+ * Provide an admin view for the plugin
  *
- * This file is used to markup the public-facing aspects of the plugin.
+ * This file is used to markup the admin area aspects of the plugin.
  *
- * @link       replace_plugin_url
- * @since      1.0.0
+ * @since 1.0.0
  *
- * @package    Replace_Plugin_Name
- * @subpackage Replace_Plugin_Name/admin/partials
+ * @package Replace_Plugin_Name/admin
  */
 ?>
 
