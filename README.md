@@ -1,6 +1,6 @@
 # Unnamed WordPress Plugin Boilerplate Fork
 
-This is a fork of the excellent [WordPress Plugin Boilerplate]() with a few edits and additions to speed up the initial setup process and better match my code structure preferences.
+This is a fork of the excellent [WordPress Plugin Boilerplate](http://wppb.io) with a few edits and additions to speed up the initial setup process and better match my code structure preferences.
 
 ## Differences to WordPress Plugin Boilerplate
 
