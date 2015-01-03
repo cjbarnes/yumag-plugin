@@ -23,7 +23,7 @@ class Replace_Plugin_Name_Common {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string $plugin_name The ID of this plugin.
+	 * @var string $plugin_name
 	 */
 	private $plugin_name;
 
@@ -32,7 +32,7 @@ class Replace_Plugin_Name_Common {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string $version The current version of this plugin.
+	 * @var string $version
 	 */
 	private $version;
 
@@ -41,8 +41,7 @@ class Replace_Plugin_Name_Common {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string $partials_path_public The path of the folder for HTML
-	 *                                   partials for the public-facing site.
+	 * @var string $partials_path_public
 	 */
 	private $partials_path_public;
 
@@ -51,8 +50,7 @@ class Replace_Plugin_Name_Common {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string $partials_path_admin The path of the folder for HTML
-	 *                                  partials for the admin area.
+	 * @var string $partials_path_admin
 	 */
 	private $partials_path_admin;
 

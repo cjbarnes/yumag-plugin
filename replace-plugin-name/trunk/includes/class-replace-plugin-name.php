@@ -36,8 +36,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var Replace_Plugin_Name_Loader $loader Maintains and registers all
-	 *                                         hooks for the plugin.
+	 * @var Replace_Plugin_Name_Loader $loader
 	 */
 	protected $loader;
 
@@ -46,8 +45,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string $plugin_name The string used to uniquely identify this
-	 *                          plugin.
+	 * @var string $plugin_name
 	 */
 	protected $plugin_name;
 
@@ -56,7 +54,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string $version The current version of the plugin.
+	 * @var string $version
 	 */
 	protected $version;
 
@@ -65,7 +63,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string $partials_path_public The HTML partials path.
+	 * @var string $partials_path_public
 	 */
 	protected $partials_path_public;
 
@@ -74,7 +72,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string $partials_path_admin The HTML partials path.
+	 * @var string $partials_path_admin
 	 */
 	protected $partials_path_admin;
 
@@ -86,8 +84,6 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var Replace_Plugin_Name $instance Static. The reusable instance of this
-	 *                                    class.
 	 * @return Replace_Plugin_Name Instance of this class.
 	 */
 	public static function get_instance() {

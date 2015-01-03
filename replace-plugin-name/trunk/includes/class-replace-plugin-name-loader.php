@@ -20,22 +20,22 @@
 class Replace_Plugin_Name_Loader {
 
 	/**
-	 * The array of actions registered with WordPress.
+	 * The array of actions registered with WordPress to fire when the plugin
+	 * loads.
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var array $actions The actions registered with WordPress to fire when
-	 *                     the plugin loads.
+	 * @var array $actions
 	 */
 	protected $actions;
 
 	/**
-	 * The array of filters registered with WordPress.
+	 * The array of filters registered with WordPress to fire when the plugin
+	 * loads.
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var array $filters The filters registered with WordPress to fire when
-	 *                     the plugin loads.
+	 * @var array $filters
 	 */
 	protected $filters;
 

@@ -22,11 +22,11 @@
 class Replace_Plugin_Name_i18n {
 
 	/**
-	 * The domain specified for this plugin.
+	 * The translation domain specified for this plugin.
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string $domain The domain identifier for this plugin.
+	 * @var string $domain
 	 */
 	private $domain;
 
