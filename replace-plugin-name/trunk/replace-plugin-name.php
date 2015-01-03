@@ -30,6 +30,27 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if ( ! function_exists( 'write_log' ) ) :
+/**
+ * Error logging function.
+ *
+ * Prettifies output of array and object contents as well as simpler variables.
+ *
+ * @since 1.0.0
+ *
+ * @param array|string|object $log The variable to output to the error log.
+ */
+function write_log( $log )  {
+	if ( true === WP_DEBUG ) {
+		if ( is_array( $log ) || is_object( $log ) ) {
+			error_log( print_r( $log, true ) );
+		} else {
+			error_log( $log );
+		}
+	}
+}
+endif;
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-replace-plugin-name-activator.php
