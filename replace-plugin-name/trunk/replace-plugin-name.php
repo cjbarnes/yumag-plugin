@@ -68,7 +68,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-replace-plugin-name.php';
  */
 function run_replace_plugin_name() {
 
-	$plugin = new Replace_Plugin_Name();
+	$plugin = Replace_Plugin_Name::get_instance();
 	$plugin->run();
 
 }

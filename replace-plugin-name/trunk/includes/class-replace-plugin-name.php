@@ -22,6 +22,14 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
+ * Uses the Singleton pattern - so instead of calling:
+ *
+ *     $plugin = new Replace_Plugin_Name();
+ *
+ * we call:
+ *
+ *     $plugin = Replace_Plugin_Name::getInstance();
+ *
  * @since      1.0.0
  * @package    Replace_Plugin_Name
  * @subpackage Replace_Plugin_Name/includes
@@ -58,15 +66,39 @@ class Replace_Plugin_Name {
 	protected $version;
 
 	/**
+	 * Returns the instance of this class.
+	 *
+	 * The key method that enables the Singleton pattern for this class. Calls __construct()
+	 * to create the class instance if it doesn't exist yet.
+	 *
+	 * @since    1.0.0
+	 *
+	 * @var      Replace_Plugin_Name    $instance    Static. The reusable instance of this class.
+	 * @return   Replace_Plugin_Name                 Instance of this class.
+	 */
+	public static function get_instance() {
+
+		static $instance = null;
+		if ( null === $instance ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
 	 * Load the dependencies, define the locale, and set the hooks for the Dashboard and
 	 * the public-facing side of the site.
 	 *
+	 * Access `protected` enforces the Singleton pattern by disabling the `new` operator.
+	 *
 	 * @since    1.0.0
+	 * @access   protected
 	 */
-	public function __construct() {
+	protected function __construct() {
 
 		$this->plugin_name = 'replace-plugin-name';
 		$this->version = '1.0.0';
@@ -80,6 +112,26 @@ class Replace_Plugin_Name {
 		} else {
 			$this->define_public_hooks();
 		}
+
+	}
+
+	/**
+	 * Private clone method to enforce the Singleton pattern.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function __clone() {
+
+	}
+
+	/**
+	 * Private unserialize method to enforce the Singleton pattern.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function __wakeup() {
 
 	}
 
