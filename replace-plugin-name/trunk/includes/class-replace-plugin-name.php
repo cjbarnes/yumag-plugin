@@ -74,8 +74,12 @@ class Replace_Plugin_Name {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_common_hooks();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
+
+		if ( is_admin() ) {
+			$this->define_admin_hooks();
+		} else {
+			$this->define_public_hooks();
+		}
 
 	}
 
@@ -116,16 +120,22 @@ class Replace_Plugin_Name {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-replace-plugin-name-common.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the Dashboard.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-replace-plugin-name-admin.php';
+		if ( is_admin() ) {
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-replace-plugin-name-public.php';
+			/**
+			 * The class responsible for defining all actions that occur in the Dashboard.
+			 */
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-replace-plugin-name-admin.php';
+
+		} else {
+
+			/**
+			 * The class responsible for defining all actions that occur in the public-facing
+			 * side of the site.
+			 */
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-replace-plugin-name-public.php';
+
+		}
 
 		$this->loader = new Replace_Plugin_Name_Loader();
 
