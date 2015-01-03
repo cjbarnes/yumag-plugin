@@ -1,3 +1,37 @@
+# Unnamed WordPress Plugin Boilerplate Fork
+
+This is a fork of the excellent [WordPress Plugin Boilerplate]() with a few edits and additions to speed up the initial setup process and better match my code structure preferences.
+
+## Differences to WordPress Plugin Boilerplate
+
+1. All instances of 'plugin-name' etc. can be reliably find-and-replaced across the site
+
+## Installation
+
+You can replace all generic 'Plugin Name' instances in the plugin using global find-and-replaces.
+
+Make sure you replace **all** strings in this list:
+
+| Text to replace               | Replace with                | Example       |
+| ----------------------------- | --------------------------- | ------------- |
+| `replace-plugin-name`         | lowercase, hyphenated       | `good-idea`   |
+| `replace_plugin_url`          | valid URL                   | `http://www.google.com/` |
+| `Replace_Package_Name`        | Title Case, underscores     | `Good_Idea`   |
+| `Replace_Plugin_Name`         | Title Case, underscores     | `Good_Idea`   |
+| `Replace Plugin Nicename`     | display name                | `Good Idea`   |
+| `Replace plugin description.` | display description         | `My description of the Good Idea plugin.` |
+| `replace-plugin-text-domain`  | lowercase, hyphenated       | `good-idea`   |
+| `replace_plugin_name`         | lowercase, underscores      | `good_idea`   |
+| `Replace Author Name`         | display author/company name | `Jane Smith`  |
+| `replace_author_url`          | valid URL                   | `http://www.google.com/` |
+| `replace-author-email`        | valid email address         | `test@test.com` |
+
+The first string - `replace-plugin-name` - is also used in filenames and folder names. These must be replaced as well, or the plugin will not work.
+
+*Original WordPress Plugin Boilerplate readme follows...*
+
+* * * * *
+
 # WordPress Plugin Boilerplate
 
 A standardized, organized, object-oriented foundation for building high-quality WordPress Plugins.
@@ -9,7 +43,7 @@ The WordPress Plugin Boilerplate includes the following files:
 * `.gitignore`. Used to exclude certain files from the repository.
 * `ChangeLog.md`. The list of changes to the core project.
 * `README.md`. The file that you’re currently reading.
-* A `plugin-name` subdirectory that contains the source code - a fully executable WordPress plugin.
+* A `replace-plugin-name` subdirectory that contains the source code - a fully executable WordPress plugin.
 
 ## Features
 
@@ -22,7 +56,7 @@ The WordPress Plugin Boilerplate includes the following files:
 
 The Boilerplate can be installed in one of two ways both of which are documented below. Note that because of its directory structure, the Boilerplate cannot be installed “as-is.”
 
-Instead, the options are:
+The installation options are:
 
 ### Copying a Directory
 
@@ -36,7 +70,7 @@ Locate the menu item that reads “The WordPress Plugin Boilerplate.”
 #### On Linux or OS X
 
 1. Copy the `WordPress-Plugin-Boilerplate` directory into your `wp-content/plugins` directory.
-2. Create a symbolic link between the `trunk` directory and the plugin. For example: `ln -s plugin-name/trunk /path/to/wordpress/wp-content/plugins/plugin-name`
+2. Create a symbolic link between the `trunk` directory and the plugin. For example: `ln -s replace-plugin-name/trunk /path/to/wordpress/wp-content/plugins/replace-plugin-name`
 3. In the WordPress dashboard, navigation to the *Plugins* page
 Locate the menu item that reads “The WordPress Plugin Boilerplate.”
 4. Click on *Activate.*
@@ -44,7 +78,7 @@ Locate the menu item that reads “The WordPress Plugin Boilerplate.”
 #### On Windows
 
 1. Copy the `WordPress-Plugin-Boilerplate` directory into your `wp-content/plugins` directory.
-2. Create a symbolic link between the `trunk` directory and the plugin. For example: `mklink /J path\to\wp-content\plugins \path\to\WordPress-Plugin-Boilerplate\trunk\plugin-name`
+2. Create a symbolic link between the `trunk` directory and the plugin. For example: `mklink /J path\to\wp-content\plugins \path\to\WordPress-Plugin-Boilerplate\trunk\replace-plugin-name`
 3. In the WordPress dashboard, navigation to the *Plugins* page
 Locate the menu item that reads “The WordPress Plugin Boilerplate.”
 4. Click on *Activate.*
@@ -89,11 +123,11 @@ For reference, [here's a discussion](http://make.wordpress.org/themes/2013/03/04
 
 Note that if you include your own classes, or third-party libraries, there are three locations in which said files may go:
 
-* `plugin-name/includes` is where functionality shared between the dashboard and the public-facing parts of the side reside
-* `plugin-name/admin` is for all dashboard-specific functionality
-* `plugin-name/public` is for all public-facing functionality
+* `replace-plugin-name/includes` is where functionality shared between the dashboard and the public-facing parts of the side reside
+* `replace-plugin-name/admin` is for all dashboard-specific functionality
+* `replace-plugin-name/public` is for all public-facing functionality
 
-Note that previous versions of the Boilerplate did not include `Plugin_Name_Loader` but this class is used to register all filters and actions with WordPress.
+Note that previous versions of the Boilerplate did not include `Replace_Plugin_Name_Loader` but this class is used to register all filters and actions with WordPress.
 
 The example code provided shows how to register your hooks with the Loader class. More information will be provided in the upcoming documentation on the website.
 

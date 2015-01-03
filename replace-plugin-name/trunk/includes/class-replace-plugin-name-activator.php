@@ -3,11 +3,11 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://example.com
+ * @link       replace_plugin_url
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Replace_Plugin_Name
+ * @subpackage Replace_Plugin_Name/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    Replace_Plugin_Name
+ * @subpackage Replace_Plugin_Name/includes
+ * @author     Replace Author Name <replace-author-email>
  */
-class Plugin_Name_Activator {
+class Replace_Plugin_Name_Activator {
 
 	/**
 	 * Short Description. (use period)

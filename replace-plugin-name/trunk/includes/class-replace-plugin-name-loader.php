@@ -3,11 +3,11 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://example.com
+ * @link       replace_plugin_url
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Replace_Plugin_Name
+ * @subpackage Replace_Plugin_Name/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    Replace_Plugin_Name
+ * @subpackage Replace_Plugin_Name/includes
+ * @author     Replace Author Name <replace-author-email>
  */
-class Plugin_Name_Loader {
+class Replace_Plugin_Name_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
