@@ -52,9 +52,9 @@ class Replace_Plugin_Name {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $replace_plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $replace_plugin_name;
+	protected $plugin_name;
 
 	/**
 	 * The current version of the plugin.
