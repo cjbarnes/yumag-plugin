@@ -73,6 +73,7 @@ class Replace_Plugin_Name {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->define_common_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -85,6 +86,7 @@ class Replace_Plugin_Name {
 	 *
 	 * - Replace_Plugin_Name_Loader. Orchestrates the hooks of the plugin.
 	 * - Replace_Plugin_Name_i18n. Defines internationalization functionality.
+	 * - Replace_Plugin_Name_Common. Defines all hooks that apply to both the dashboard and the public side of the site.
 	 * - Replace_Plugin_Name_Admin. Defines all hooks for the dashboard.
 	 * - Replace_Plugin_Name_Public. Defines all hooks for the public side of the site.
 	 *
@@ -107,6 +109,12 @@ class Replace_Plugin_Name {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-replace-plugin-name-i18n.php';
+
+		/**
+		 * The class responsible for defining all actions that occur across both the Dashboard
+		 * and the public-facing side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-replace-plugin-name-common.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
@@ -138,6 +146,22 @@ class Replace_Plugin_Name {
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+
+	}
+
+	/**
+	 * Register all of the hooks related to both the dashboard functionality
+	 * and the public-facing functionality of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_common_hooks() {
+
+		$plugin_common = new Replace_Plugin_Name_Common( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_common, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_common, 'enqueue_scripts' );
 
 	}
 
