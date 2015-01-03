@@ -11,8 +11,8 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the dashboard-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and two examples hooks for how to enqueue
+ * the dashboard-specific stylesheet and JavaScript.
  *
  * @since 1.0.0
  */
@@ -37,17 +37,28 @@ class Replace_Plugin_Name_Public {
 	private $version;
 
 	/**
+	 * The path for including HTML partials.
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $partials_path The path of the folder for HTML partials.
+	 */
+	private $partials_path;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var string $plugin_name The name of the plugin.
-	 * @var string $version     The version of this plugin.
+	 * @var string $plugin_name   The name of the plugin.
+	 * @var string $version       The version of this plugin.
+	 * @var string $partials_path The path for including HTML partials.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $partials_path ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->partials_path = $partials_path;
 
 	}
 

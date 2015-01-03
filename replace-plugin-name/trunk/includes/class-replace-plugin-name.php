@@ -61,6 +61,24 @@ class Replace_Plugin_Name {
 	protected $version;
 
 	/**
+	 * The path to HTML partials used in the public-facing side of this plugin.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var string $partials_path_public The HTML partials path.
+	 */
+	protected $partials_path_public;
+
+	/**
+	 * The path to HTML partials used in the admin area of this plugin.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var string $partials_path_admin The HTML partials path.
+	 */
+	protected $partials_path_admin;
+
+	/**
 	 * Returns the instance of this class.
 	 *
 	 * The key method that enables the Singleton pattern for this class. Calls
@@ -98,6 +116,10 @@ class Replace_Plugin_Name {
 
 		$this->plugin_name = 'replace-plugin-name';
 		$this->version = '1.0.0';
+
+		$plugin_path = plugin_dir_path( dirname( __FILE__ ) );
+		$this->partials_path_public = $plugin_path . 'public/partials/';
+		$this->partials_path_admin = $plugin_path . 'admin/partials/';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -232,7 +254,9 @@ class Replace_Plugin_Name {
 
 		$plugin_common = new Replace_Plugin_Name_Common(
 			$this->get_plugin_name(),
-			$this->get_version()
+			$this->get_version(),
+			$this->get_partials_path( 'public' ),
+			$this->get_partials_path( 'admin' )
 		);
 
 		// Enqueue shared styles and scripts.
@@ -264,7 +288,8 @@ class Replace_Plugin_Name {
 
 		$plugin_admin = new Replace_Plugin_Name_Admin(
 			$this->get_plugin_name(),
-			$this->get_version()
+			$this->get_version(),
+			$this->get_partials_path( 'admin' )
 		);
 
 		// Enqueue admin styles and scripts.
@@ -296,7 +321,8 @@ class Replace_Plugin_Name {
 
 		$plugin_public = new Replace_Plugin_Name_Public(
 			$this->get_plugin_name(),
-			$this->get_version()
+			$this->get_version(),
+			$this->get_partials_path( 'public' )
 		);
 
 		// Enqueue public-facing styles and scripts.
@@ -356,6 +382,32 @@ class Replace_Plugin_Name {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Retrieve the path to be used for including an HTML partial.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param  string $subpackage Default 'public'. Accepts 'public', 'admin'.
+	 *                            The area of the site this partial is used in.
+	 * @return string|false The path to the partials folder for this subpackage.
+	 */
+	public function get_partials_path( $subpackage = 'public' ) {
+
+		switch ( $subpackage ) {
+
+			case 'public':
+				return $this->partials_path_public;
+
+			case 'admin':
+				return $this->partials_path_admin;
+
+			default:
+				return false;
+
+		}
+
 	}
 
 }

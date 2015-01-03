@@ -37,6 +37,26 @@ class Replace_Plugin_Name_Common {
 	private $version;
 
 	/**
+	 * The path for including public-facing HTML partials.
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $partials_path_public The path of the folder for HTML
+	 *                                   partials for the public-facing site.
+	 */
+	private $partials_path_public;
+
+	/**
+	 * The path for including admin-area HTML partials.
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 * @var string $partials_path_admin The path of the folder for HTML
+	 *                                  partials for the admin area.
+	 */
+	private $partials_path_admin;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since 1.0.0
@@ -44,10 +64,12 @@ class Replace_Plugin_Name_Common {
 	 * @var string $plugin_name The name of this plugin.
 	 * @var string $version     The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $partials_path_public, $partials_path_admin ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->partials_path_public = $partials_path_public;
+		$this->partials_path_admin = $partials_path_admin;
 
 	}
 
