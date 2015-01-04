@@ -59,6 +59,15 @@ class Replace_Plugin_Name {
 	protected $version;
 
 	/**
+	 * The path to the plugin (used for includes and requires).
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var string $plugin_path
+	 */
+	protected $plugin_path;
+
+	/**
 	 * The path to HTML partials used in the public-facing side of this plugin.
 	 *
 	 * @since 1.0.0
@@ -110,12 +119,20 @@ class Replace_Plugin_Name {
 	 */
 	protected function __construct() {
 
+		/*
+		 * Init class properties
+		 */
+
 		$this->plugin_name = 'replace-plugin-name';
 		$this->version = '1.0.0';
 
-		$plugin_path = plugin_dir_path( dirname( __FILE__ ) );
-		$this->partials_path_public = $plugin_path . 'public/partials/';
-		$this->partials_path_admin = $plugin_path . 'admin/partials/';
+		$this->plugin_path = plugin_dir_path( dirname( __FILE__ ) );
+		$this->partials_path_public = $this->plugin_path . 'public/partials/';
+		$this->partials_path_admin = $this->plugin_path . 'admin/partials/';
+
+		/*
+		 * Call plugin init methods
+		 */
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -249,8 +266,6 @@ class Replace_Plugin_Name {
 	private function define_common_hooks() {
 
 		$plugin_common = new Replace_Plugin_Name_Common(
-			$this->get_plugin_name(),
-			$this->get_version(),
 			$this->get_partials_path( 'public' ),
 			$this->get_partials_path( 'admin' )
 		);
@@ -283,8 +298,6 @@ class Replace_Plugin_Name {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Replace_Plugin_Name_Admin(
-			$this->get_plugin_name(),
-			$this->get_version(),
 			$this->get_partials_path( 'admin' )
 		);
 
@@ -316,8 +329,6 @@ class Replace_Plugin_Name {
 	private function define_public_hooks() {
 
 		$plugin_public = new Replace_Plugin_Name_Public(
-			$this->get_plugin_name(),
-			$this->get_version(),
 			$this->get_partials_path( 'public' )
 		);
 
@@ -378,6 +389,17 @@ class Replace_Plugin_Name {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Retrieve the path to this plugin's root directory.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string The path to use in requires and includes.
+	 */
+	public function get_plugin_path() {
+		return $this->plugin_path;
 	}
 
 	/**

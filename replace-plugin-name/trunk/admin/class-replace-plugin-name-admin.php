@@ -19,46 +19,11 @@
 class Replace_Plugin_Name_Admin {
 
 	/**
-	 * The ID of this plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @var string $plugin_name
-	 */
-	private $plugin_name;
-
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @var string $version
-	 */
-	private $version;
-
-	/**
-	 * The path for including HTML partials.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @var string $partials_path
-	 */
-	private $partials_path;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @var string $plugin_name   The name of this plugin.
-	 * @var string $version       The version of this plugin.
-	 * @var string $partials_path The path for including HTML partials.
 	 */
-	public function __construct( $plugin_name, $version, $partials_path ) {
-
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-		$this->partials_path = $partials_path;
+	public function __construct() {
 
 	}
 
@@ -81,11 +46,13 @@ class Replace_Plugin_Name_Admin {
 		 * this class.
 		 */
 
+		$plugin = Replace_Plugin_Name::get_instance();
+
 		wp_enqueue_style(
-			$this->plugin_name,
+			$plugin->get_plugin_name(),
 			plugin_dir_url( __FILE__ ) . 'css/replace-plugin-name-admin.css',
 			array(),
-			$this->version,
+			$plugin->get_version(),
 			'all'
 		);
 
@@ -110,11 +77,13 @@ class Replace_Plugin_Name_Admin {
 		 * this class.
 		 */
 
+		$plugin = Replace_Plugin_Name::get_instance();
+
 		wp_enqueue_script(
-			$this->plugin_name,
+			$plugin->get_plugin_name(),
 			plugin_dir_url( __FILE__ ) . 'js/replace-plugin-name-admin.js',
 			array( 'jquery' ),
-			$this->version,
+			$plugin->get_version(),
 			false
 		);
 
