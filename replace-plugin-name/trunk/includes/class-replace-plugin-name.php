@@ -43,6 +43,8 @@ class Replace_Plugin_Name {
 	/**
 	 * The unique identifier of this plugin.
 	 *
+	 * Also used for the translations text domain.
+	 *
 	 * @since 1.0.0
 	 * @access protected
 	 * @var string $plugin_name
