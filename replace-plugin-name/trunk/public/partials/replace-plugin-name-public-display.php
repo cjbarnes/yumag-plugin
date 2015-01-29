@@ -9,6 +9,12 @@
  *
  * @package Replace_Plugin_Name/public
  */
+
+// Don't allow this file to be loaded directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
