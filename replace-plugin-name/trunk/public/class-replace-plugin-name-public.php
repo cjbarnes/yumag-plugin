@@ -11,12 +11,14 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to enqueue
- * the dashboard-specific stylesheet and JavaScript.
+ * Defines two examples hooks for how to enqueue the public-facing stylesheet
+ * and JavaScript.
+ *
+ * Uses the Singleton pattern.
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name_Public {
+class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 
 	/**
 	 * Initialize the class and set its properties.

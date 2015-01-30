@@ -194,6 +194,8 @@ class Replace_Plugin_Name {
 		 * the core plugin.
 		 */
 		require_once $this->plugin_path . 'includes/class-replace-plugin-name-loader.php';
+		// Get the parent class for all Singleton classes.
+		require_once $this->plugin_path . 'includes/class-replace-plugin-name-singleton.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality

@@ -9,25 +9,16 @@
  */
 
 /**
- * The functionality of the plugin that's shared between dashboard and public
+ * The functionality of the plugin that's shared between dashboard and public.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue a stylesheet and JavaScript.
+ * Uses the Singleton pattern.
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name_Common {
+class Replace_Plugin_Name_Common extends Replace_Plugin_Name_Singleton {
 
 	/**
-	 * Initialize the class and set its properties.
 	 *
-	 * @since 1.0.0
-	 */
-	public function __construct() {
-
-	}
-
-	/**
 	 * Register the JavaScript shared between the dashboard and the public side
 	 * of the site.
 	 *
