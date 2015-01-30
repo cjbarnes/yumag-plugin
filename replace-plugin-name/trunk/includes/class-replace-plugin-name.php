@@ -127,14 +127,6 @@ class Replace_Plugin_Name {
 		 */
 
 		$this->load_dependencies();
-		$this->set_locale();
-		$this->define_common_hooks();
-
-		if ( is_admin() ) {
-			$this->define_admin_hooks();
-		} else {
-			$this->define_public_hooks();
-		}
 
 	}
 
@@ -163,7 +155,8 @@ class Replace_Plugin_Name {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Replace_Plugin_Name_Loader. Orchestrates the hooks of the plugin.
+	 * - Replace_Plugin_Name_Singleton. Abstract class that enforces the
+	 *   Singleton design pattern.
 	 * - Replace_Plugin_Name_i18n. Defines internationalization functionality.
 	 * - Replace_Plugin_Name_Common. Defines all hooks that apply to both the
 	 *   admin area and the public side of the site.
@@ -171,8 +164,7 @@ class Replace_Plugin_Name {
 	 * - Replace_Plugin_Name_Public. Defines all hooks for the public side of
 	 *   the site.
 	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
+	 * Instantiate the main plugin classes. They will then register their hooks.
 	 *
 	 * @since 1.0.0
 	 * @access private
@@ -242,18 +234,13 @@ class Replace_Plugin_Name {
 	 * @access private
 	 *
 	 * @see Replace_Plugin_Name_i18n
-	 * @see Replace_Plugin_Name_Loader::add_action()
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Replace_Plugin_Name_i18n();
-		$plugin_i18n->set_domain( $this->get_plugin_name() );
+		$i18n = new Replace_Plugin_Name_i18n();
+		$i18n->set_domain( $this->get_plugin_name() );
 
-		$this->loader->add_action(
-			'plugins_loaded',
-			$plugin_i18n,
-			'load_plugin_textdomain'
-		);
+		add_action(	'plugins_loaded', array( $i18n, 'load_plugin_textdomain' ) );
 
 	}
 
