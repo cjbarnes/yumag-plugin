@@ -194,20 +194,22 @@ class Replace_Plugin_Name {
 		 * the core plugin.
 		 */
 		require_once $this->plugin_path . 'includes/class-replace-plugin-name-loader.php';
+		$path = $this->plugin_path;
+
 		// Get the parent class for all Singleton classes.
-		require_once $this->plugin_path . 'includes/class-replace-plugin-name-singleton.php';
+		require_once $path . 'includes/class-replace-plugin-name-singleton.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once $this->plugin_path . 'includes/class-replace-plugin-name-i18n.php';
+		require_once $path . 'includes/class-replace-plugin-name-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur across
 		 * both the Dashboard and the public-facing side of the site.
 		 */
-		require_once $this->plugin_path . 'includes/class-replace-plugin-name-common.php';
+		require_once $path . 'includes/class-replace-plugin-name-common.php';
 
 		if ( is_admin() ) {
 
@@ -215,7 +217,7 @@ class Replace_Plugin_Name {
 			 * The class responsible for defining all actions that occur in the
 			 * Dashboard.
 			 */
-			require_once $this->plugin_path . 'admin/class-replace-plugin-name-admin.php';
+			require_once $path . 'admin/class-replace-plugin-name-admin.php';
 
 		} else {
 
@@ -223,7 +225,7 @@ class Replace_Plugin_Name {
 			 * The class responsible for defining all actions that occur in the
 			 * public-facing side of the site.
 			 */
-			require_once $this->plugin_path . 'public/class-replace-plugin-name-public.php';
+			require_once $path . 'public/class-replace-plugin-name-public.php';
 
 		}
 
