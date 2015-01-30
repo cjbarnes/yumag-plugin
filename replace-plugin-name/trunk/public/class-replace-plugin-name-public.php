@@ -21,11 +21,19 @@
 class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Register all hooks for actions and filters in this class.
+	 *
+	 * Called on this class's construction by the parent class method
+	 * `Replace_Plugin_Name_Singleton::__construct()`.
 	 *
 	 * @since 1.0.0
+	 * @access protected
 	 */
-	public function __construct() {
+	protected function define_hooks() {
+
+		// Enqueue public-facing styles and scripts.
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
 	}
 
@@ -39,13 +47,9 @@ class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Replace_Plugin_Name_Public_Loader as all of the hooks are
-		 * defined in that particular class.
-		 *
-		 * The Replace_Plugin_Name_Public_Loader will then create the
-		 * relationship between the defined hooks and the functions defined in
-		 * this class.
+		 * An instance of this class should be hooked to the
+		 * `wp_enqueue_scripts` action by this class's `define_hooks()` method,
+		 * which is called by the parent class's constructor.
 		 */
 
 		$plugin = Replace_Plugin_Name::get_instance();
@@ -70,13 +74,9 @@ class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Replace_Plugin_Name_Public_Loader as all of the hooks are
-		 * defined in that particular class.
-		 *
-		 * The Replace_Plugin_Name_Public_Loader will then create the
-		 * relationship between the defined hooks and the functions defined in
-		 * this class.
+		 * An instance of this class should be hooked to the
+		 * `wp_enqueue_scripts` action by this class's `define_hooks()` method,
+		 * which is called by the parent class's constructor.
 		 */
 
 		$plugin = Replace_Plugin_Name::get_instance();

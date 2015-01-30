@@ -31,16 +31,6 @@
 class Replace_Plugin_Name {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks
-	 * that power the plugin.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 * @var Replace_Plugin_Name_Loader $loader
-	 */
-	protected $loader;
-
-	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * Also used for the translations text domain.
@@ -189,11 +179,6 @@ class Replace_Plugin_Name {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of
-		 * the core plugin.
-		 */
-		require_once $this->plugin_path . 'includes/class-replace-plugin-name-loader.php';
 		$path = $this->plugin_path;
 
 		// Get the parent class for all Singleton classes.
@@ -229,7 +214,21 @@ class Replace_Plugin_Name {
 
 		}
 
-		$this->loader = new Replace_Plugin_Name_Loader();
+		// Prepare internationalization class and hooks.
+		$this->set_locale();
+
+		/*
+		 * Instantiate the classes that define and handle the plugin's
+		 * functionality.
+		 */
+		Replace_Plugin_Name_Common::get_instance( $this );
+
+		if ( is_admin() ) {
+			Replace_Plugin_Name_Admin::get_instance( $this );
+		} else {
+			Replace_Plugin_Name_Public::get_instance( $this );
+		}
+
 
 	}
 
@@ -259,111 +258,6 @@ class Replace_Plugin_Name {
 	}
 
 	/**
-	 * Register all of the hooks related to both the dashboard functionality
-	 * and the public-facing functionality of the plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 *
-	 * @see Replace_Plugin_Name_Common
-	 * @see Replace_Plugin_Name_Loader::add_action()
-	 * @see Replace_Plugin_Name_Loader::add_filter()
-	 */
-	private function define_common_hooks() {
-
-		$plugin_common = new Replace_Plugin_Name_Common(
-			$this->get_partials_path( 'public' ),
-			$this->get_partials_path( 'admin' )
-		);
-
-		// Enqueue shared styles and scripts.
-		$this->loader->add_action(
-			'wp_enqueue_scripts',
-			$plugin_common,
-			'enqueue_scripts'
-		);
-		$this->loader->add_action(
-			'admin_enqueue_scripts',
-			$plugin_common,
-			'enqueue_scripts'
-		);
-
-	}
-
-	/**
-	 * Register all of the hooks related to the admin functionality
-	 * of the plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 *
-	 * @see Replace_Plugin_Name_Admin
-	 * @see Replace_Plugin_Name_Loader::add_action()
-	 * @see Replace_Plugin_Name_Loader::add_filter()
-	 */
-	private function define_admin_hooks() {
-
-		$plugin_admin = new Replace_Plugin_Name_Admin(
-			$this->get_partials_path( 'admin' )
-		);
-
-		// Enqueue admin styles and scripts.
-		$this->loader->add_action(
-			'admin_enqueue_scripts',
-			$plugin_admin,
-			'enqueue_styles'
-		);
-		$this->loader->add_action(
-			'admin_enqueue_scripts',
-			$plugin_admin,
-			'enqueue_scripts'
-		);
-
-	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 *
-	 * @see Replace_Plugin_Name_Public
-	 * @see Replace_Plugin_Name_Loader::add_action()
-	 * @see Replace_Plugin_Name_Loader::add_filter()
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Replace_Plugin_Name_Public(
-			$this->get_partials_path( 'public' )
-		);
-
-		// Enqueue public-facing styles and scripts.
-		$this->loader->add_action(
-			'wp_enqueue_scripts',
-			$plugin_public,
-			'enqueue_styles'
-		);
-		$this->loader->add_action(
-			'wp_enqueue_scripts',
-			$plugin_public,
-			'enqueue_scripts'
-		);
-
-	}
-
-	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @see Replace_Plugin_Name_Loader::run()
-	 */
-	public function run() {
-		$this->loader->run();
-	}
-
-	/**
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
@@ -373,17 +267,6 @@ class Replace_Plugin_Name {
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
-	}
-
-	/**
-	 * The reference to the class that orchestrates the hooks with the plugin.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return Replace_Plugin_Name_Loader Orchestrates the hooks of the plugin.
-	 */
-	public function get_loader() {
-		return $this->loader;
 	}
 
 	/**

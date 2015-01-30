@@ -6,11 +6,12 @@ This is a fork of the excellent [WordPress Plugin Boilerplate](http://wppb.io) w
 
 1. All instances of 'plugin-name' etc. can be reliably find-and-replaced across the site.
 2. Added `Replace_Plugin_Name_Common` class for hooks that run in both admin and public areas.
-3. Uses the [Singleton pattern](http://www.phptherightway.com/pages/Design-Patterns.html) for all main plugin classes, with an included Singleton abstract class for easy creation of further singletons.
-4. Adds a `$partials_path` property for the main class, which simplifies inclusion of HTML partials.
-5. Adds a `write_log()` wrapper for the error log, which allows easier PHP debugging.
-6. Tweaks code comment styling to better match the [Core PHP Documentation Standards](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/#4-hooks-actions-and-filters) and my own preferences (e.g. 80 character limit where possible). 
-7. Requires PHP 5.3+ (the original only requires 5.2+), due to use of late static binding in `Replace_Plugin_Name::get_instance()`.
+3. Removed `Replace_Plugin_Name_Loader` class and moved the `add_action()` and `add_filter()` calls into each class's constructor function.
+4. Uses the [Singleton pattern](http://www.phptherightway.com/pages/Design-Patterns.html) for all main plugin classes, with an included Singleton abstract class for easy creation of further singletons.
+5. Adds a `$partials_path` property for the main class, which simplifies inclusion of HTML partials.
+6. Adds a `write_log()` wrapper for the error log, which allows easier PHP debugging.
+7. Tweaks code comment styling to better match the [Core PHP Documentation Standards](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/#4-hooks-actions-and-filters) and my own preferences (e.g. 80 character limit where possible). 
+8. Requires PHP 5.3+ (the original only requires 5.2+), due to use of late static binding in `Replace_Plugin_Name::get_instance()`.
 
 ## Installation
 
