@@ -18,35 +18,31 @@
 class Replace_Plugin_Name_Common extends Replace_Plugin_Name_Singleton {
 
 	/**
+	 * Load the required dependencies for the admin area.
 	 *
-	 * Register the JavaScript shared between the dashboard and the public side
-	 * of the site.
+	 * This is an example of how to load additional classes beyond the basic
+	 * Admin, Public, and Common classes. Each class that extends
+	 * `Replace_Plugin_Name_Singleton` calls this method when it is first
+	 * constructed.
+	 *
+	 * Called on this class's construction by the parent class method
+	 * `Replace_Plugin_Name_Singleton::__construct()`.
 	 *
 	 * @since 1.0.0
+	 * @access protected
 	 */
-	public function enqueue_scripts() {
+	protected function load_dependencies() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Replace_Plugin_Name_Common_Loader as all of the hooks are
-		 * defined in that particular class.
-		 *
-		 * The Replace_Plugin_Name_Common_Loader will then create the
-		 * relationship between the defined hooks and the functions defined in
-		 * this class.
+		$path = $this->plugin->get_plugin_path();
+
+		// Include all other common-functionality classes.
+		require_once $path . 'includes/class-replace-plugin-name-example.php';
+
+		/*
+		 * Instantiate classes. The Singleton classes’ constructors expect the
+		 * Replace_Plugin_Name class to be passed in as an argument.
 		 */
-
-		$plugin = Replace_Plugin_Name::get_instance();
-
-		wp_enqueue_script(
-			$plugin->get_plugin_name(),
-			plugin_dir_url( __FILE__ ) . 'js/replace-plugin-name-common.js',
-			array( 'jquery' ),
-			$plugin->get_version(),
-			false
-		);
+		Replace_Plugin_Name_Example::get_instance( $this->plugin );
 
 	}
 
