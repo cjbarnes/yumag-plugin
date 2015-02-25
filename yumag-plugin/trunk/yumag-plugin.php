@@ -8,21 +8,21 @@
  * the plugin, registers the activation and deactivation functions, and defines
  * a function that starts the plugin.
  *
- * @link replace_plugin_url
+ * @link http://www.yumagazine.co.uk/
  * @since 1.0.0
  *
- * @package Replace_Package_Name
+ * @package YuMag_Plugin
  *
  * @wordpress-plugin
- * Plugin Name:  Replace Plugin Nicename
- * Plugin URI:   replace_plugin_url
- * Description:  Replace plugin description.
+ * Plugin Name:  Yu Magazine Plugin
+ * Plugin URI:   http://www.yumagazine.co.uk/
+ * Description:  **DO NOT REMOVE OR DEACTIVATE!** Contains custom features for Yu Magazine.
  * Version:      1.0.0
- * Author:       Replace Author Name
- * Author URI:   replace_author_url
+ * Author:       cJ barnes
+ * Author URI:   http://www.cjbarnes.co.uk/
  * License:      GPL-2.0+
  * License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:  replace-plugin-text-domain
+ * Text Domain:  yumag-plugin
  * Domain Path:  /languages
  */
 
@@ -57,32 +57,32 @@ endif;
  *
  * @since 1.0.0
  *
- * @see Replace_Plugin_Name_Activator
+ * @see YuMag_Plugin_Activator
  */
-function activate_replace_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-replace-plugin-name-activator.php';
-	Replace_Plugin_Name_Activator::activate();
+function activate_yumag_plugin() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-yumag-plugin-activator.php';
+	YuMag_Plugin_Activator::activate();
 }
-register_activation_hook( __FILE__, 'activate_replace_plugin_name' );
+register_activation_hook( __FILE__, 'activate_yumag_plugin' );
 
 /**
  * The code that runs during plugin deactivation.
  *
  * @since 1.0.0
  *
- * @see Replace_Plugin_Name_Deactivator
+ * @see YuMag_Plugin_Deactivator
  */
-function deactivate_replace_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-replace-plugin-name-deactivator.php';
-	Replace_Plugin_Name_Deactivator::deactivate();
+function deactivate_yumag_plugin() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-yumag-plugin-deactivator.php';
+	YuMag_Plugin_Deactivator::deactivate();
 }
-register_deactivation_hook( __FILE__, 'deactivate_replace_plugin_name' );
+register_deactivation_hook( __FILE__, 'deactivate_yumag_plugin' );
 
 /**
  * The core plugin class that is used to define internationalization, dashboard-
  * specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-replace-plugin-name.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-yumag-plugin.php';
 
 /**
  * Begins execution of the plugin.
@@ -92,11 +92,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-replace-plugin-name.php';
  *
  * @since 1.0.0
  *
- * @see Replace_Plugin_Name
+ * @see YuMag_Plugin
  */
-function run_replace_plugin_name() {
+function run_yumag_plugin() {
 
-	Replace_Plugin_Name::get_instance();
+	YuMag_Plugin::get_instance();
 
 }
-run_replace_plugin_name();
+run_yumag_plugin();

@@ -8,7 +8,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name
+ * @package YuMag_Plugin
  */
 
 /**
@@ -20,15 +20,15 @@
  *
  * Uses the Singleton pattern - so instead of calling:
  *
- *     $plugin = new Replace_Plugin_Name();
+ *     $plugin = new YuMag_Plugin();
  *
  * we call:
  *
- *     $plugin = Replace_Plugin_Name::getInstance();
+ *     $plugin = YuMag_Plugin::getInstance();
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name {
+class YuMag_Plugin {
 
 	/**
 	 * The unique identifier of this plugin.
@@ -85,7 +85,7 @@ class Replace_Plugin_Name {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return Replace_Plugin_Name Instance of this class.
+	 * @return YuMag_Plugin Instance of this class.
 	 */
 	public static function get_instance() {
 
@@ -115,7 +115,7 @@ class Replace_Plugin_Name {
 		 * Init class properties
 		 */
 
-		$this->plugin_name = 'replace-plugin-name';
+		$this->plugin_name = 'yumag-plugin';
 		$this->version = '1.0.0';
 
 		$this->plugin_path = plugin_dir_path( dirname( __FILE__ ) );
@@ -155,13 +155,13 @@ class Replace_Plugin_Name {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Replace_Plugin_Name_Singleton. Abstract class that enforces the
+	 * - YuMag_Plugin_Singleton. Abstract class that enforces the
 	 *   Singleton design pattern.
-	 * - Replace_Plugin_Name_i18n. Defines internationalization functionality.
-	 * - Replace_Plugin_Name_Common. Defines all hooks that apply to both the
+	 * - YuMag_Plugin_i18n. Defines internationalization functionality.
+	 * - YuMag_Plugin_Common. Defines all hooks that apply to both the
 	 *   admin area and the public side of the site.
-	 * - Replace_Plugin_Name_Admin. Defines all hooks for the admin area.
-	 * - Replace_Plugin_Name_Public. Defines all hooks for the public side of
+	 * - YuMag_Plugin_Admin. Defines all hooks for the admin area.
+	 * - YuMag_Plugin_Public. Defines all hooks for the public side of
 	 *   the site.
 	 *
 	 * Instantiate the main plugin classes. They will then register their hooks.
@@ -174,19 +174,19 @@ class Replace_Plugin_Name {
 		$path = $this->plugin_path;
 
 		// Get the parent class for all Singleton classes.
-		require_once $path . 'includes/class-replace-plugin-name-singleton.php';
+		require_once $path . 'includes/class-yumag-plugin-singleton.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once $path . 'includes/class-replace-plugin-name-i18n.php';
+		require_once $path . 'includes/class-yumag-plugin-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur across
 		 * both the Dashboard and the public-facing side of the site.
 		 */
-		require_once $path . 'includes/class-replace-plugin-name-common.php';
+		require_once $path . 'includes/class-yumag-plugin-common.php';
 
 		if ( is_admin() ) {
 
@@ -194,7 +194,7 @@ class Replace_Plugin_Name {
 			 * The class responsible for defining all actions that occur in the
 			 * Dashboard.
 			 */
-			require_once $path . 'admin/class-replace-plugin-name-admin.php';
+			require_once $path . 'admin/class-yumag-plugin-admin.php';
 
 		} else {
 
@@ -202,7 +202,7 @@ class Replace_Plugin_Name {
 			 * The class responsible for defining all actions that occur in the
 			 * public-facing side of the site.
 			 */
-			require_once $path . 'public/class-replace-plugin-name-public.php';
+			require_once $path . 'public/class-yumag-plugin-public.php';
 
 		}
 
@@ -213,12 +213,12 @@ class Replace_Plugin_Name {
 		 * Instantiate the classes that define and handle the plugin's
 		 * functionality.
 		 */
-		Replace_Plugin_Name_Common::get_instance( $this );
+		YuMag_Plugin_Common::get_instance( $this );
 
 		if ( is_admin() ) {
-			Replace_Plugin_Name_Admin::get_instance( $this );
+			YuMag_Plugin_Admin::get_instance( $this );
 		} else {
-			Replace_Plugin_Name_Public::get_instance( $this );
+			YuMag_Plugin_Public::get_instance( $this );
 		}
 
 
@@ -227,17 +227,17 @@ class Replace_Plugin_Name {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Replace_Plugin_Name_i18n class in order to set the domain and
+	 * Uses the YuMag_Plugin_i18n class in order to set the domain and
 	 * to register the hook with WordPress.
 	 *
 	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @see Replace_Plugin_Name_i18n
+	 * @see YuMag_Plugin_i18n
 	 */
 	private function set_locale() {
 
-		$i18n = new Replace_Plugin_Name_i18n();
+		$i18n = new YuMag_Plugin_i18n();
 		$i18n->set_domain( $this->get_plugin_name() );
 
 		add_action(	'plugins_loaded', array( $i18n, 'load_plugin_textdomain' ) );

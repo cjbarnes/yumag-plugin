@@ -7,7 +7,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name/public
+ * @package YuMag_Plugin/public
  */
 
 // Don't allow this file to be loaded directly.

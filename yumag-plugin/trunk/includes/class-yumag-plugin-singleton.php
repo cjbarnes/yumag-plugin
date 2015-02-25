@@ -5,7 +5,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name
+ * @package YuMag_Plugin
  */
 
 /**
@@ -19,14 +19,14 @@
  *
  * @since 1.0.0
  */
-abstract class Replace_Plugin_Name_Singleton {
+abstract class YuMag_Plugin_Singleton {
 
 	/**
 	 * The plugin's main class.
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var Replace_Plugin_Name $plugin
+	 * @var YuMag_Plugin $plugin
 	 */
 	protected $plugin;
 
@@ -41,8 +41,8 @@ abstract class Replace_Plugin_Name_Singleton {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param Replace_Plugin_Name $plugin The main plugin class instance.
-	 * @return Replace_Plugin_Name_Singleton Instance of this class.
+	 * @param YuMag_Plugin $plugin The main plugin class instance.
+	 * @return YuMag_Plugin_Singleton Instance of this class.
 	 */
 	final public static function get_instance( $plugin ) {
 
@@ -68,7 +68,7 @@ abstract class Replace_Plugin_Name_Singleton {
 	 * @since 1.0.0
 	 * @access protected
 	 *
-	 * @var Replace_Plugin_Name $plugin The main plugin class instance.
+	 * @var YuMag_Plugin $plugin The main plugin class instance.
 	 */
 	protected function __construct( $plugin ) {
 

@@ -5,7 +5,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name/public
+ * @package YuMag_Plugin/public
  */
 
 /**
@@ -18,13 +18,13 @@
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
+class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 
 	/**
 	 * Register all hooks for actions and filters in this class.
 	 *
 	 * Called on this class's construction by the parent class method
-	 * `Replace_Plugin_Name_Singleton::__construct()`.
+	 * `YuMag_Plugin_Singleton::__construct()`.
 	 *
 	 * @since 1.0.0
 	 * @access protected
@@ -52,11 +52,11 @@ class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 		 * which is called by the parent class's constructor.
 		 */
 
-		$plugin = Replace_Plugin_Name::get_instance();
+		$plugin = YuMag_Plugin::get_instance();
 
 		wp_enqueue_style(
 			$plugin->get_plugin_name(),
-			plugin_dir_url( __FILE__ ) . 'css/replace-plugin-name-public.css',
+			plugin_dir_url( __FILE__ ) . 'css/yumag-plugin-public.css',
 			array(),
 			$plugin->get_version(),
 			'all'
@@ -79,11 +79,11 @@ class Replace_Plugin_Name_Public extends Replace_Plugin_Name_Singleton {
 		 * which is called by the parent class's constructor.
 		 */
 
-		$plugin = Replace_Plugin_Name::get_instance();
+		$plugin = YuMag_Plugin::get_instance();
 
 		wp_enqueue_script(
 			$plugin->get_plugin_name(),
-			plugin_dir_url( __FILE__ ) . 'js/replace-plugin-name-public.js',
+			plugin_dir_url( __FILE__ ) . 'js/yumag-plugin-public.js',
 			array( 'jquery' ),
 			$plugin->get_version(),
 			false

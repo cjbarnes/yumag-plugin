@@ -8,7 +8,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name
+ * @package YuMag_Plugin
  */
 
 /**
@@ -19,7 +19,7 @@
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name_i18n {
+class YuMag_Plugin_i18n {
 
 	/**
 	 * The translation domain specified for this plugin.

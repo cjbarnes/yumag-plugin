@@ -5,7 +5,7 @@
  *
  * @since 1.0.0
  *
- * @package Replace_Plugin_Name
+ * @package YuMag_Plugin
  */
 
 /**
@@ -16,7 +16,7 @@
  *
  * @since 1.0.0
  */
-class Replace_Plugin_Name_Deactivator {
+class YuMag_Plugin_Deactivator {
 
 	/**
 	 * Short Description. (use period)
