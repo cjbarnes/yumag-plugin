@@ -20,11 +20,6 @@ class YuMag_Plugin_Common extends YuMag_Plugin_Singleton {
 	/**
 	 * Load the required dependencies for the admin area.
 	 *
-	 * This is an example of how to load additional classes beyond the basic
-	 * Admin, Public, and Common classes. Each class that extends
-	 * `YuMag_Plugin_Singleton` calls this method when it is first
-	 * constructed.
-	 *
 	 * Called on this class's construction by the parent class method
 	 * `YuMag_Plugin_Singleton::__construct()`.
 	 *
@@ -36,13 +31,13 @@ class YuMag_Plugin_Common extends YuMag_Plugin_Singleton {
 		$path = $this->plugin->get_plugin_path();
 
 		// Include all other common-functionality classes.
-		require_once $path . 'includes/class-yumag-plugin-example.php';
+		require_once $path . 'includes/class-yumag-plugin-notices.php';
 
 		/*
 		 * Instantiate classes. The Singleton classes’ constructors expect the
 		 * YuMag_Plugin class to be passed in as an argument.
 		 */
-		YuMag_Plugin_Example::get_instance( $this->plugin );
+		YuMag_Plugin_Notices::get_instance( $this->plugin );
 
 	}
 

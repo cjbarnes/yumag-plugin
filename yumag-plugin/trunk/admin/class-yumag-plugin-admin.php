@@ -21,6 +21,24 @@
 class YuMag_Plugin_Admin extends YuMag_Plugin_Singleton {
 
 	/**
+	 * Load sub-classes.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+	protected function load_dependencies() {
+
+		$path = $this->plugin->get_plugin_path();
+
+		// Include all other admin-functionality classes.
+		//require_once $path . 'admin/class-yumag-plugin-user-fields.php';
+
+		// Instantiate classes.
+		//YuMag_Plugin_User_Fields::get_instance( $this->plugin );
+
+	}
+
+	/**
 	 * Register all hooks for actions and filters in this class.
 	 *
 	 * Called on this class's construction by the parent class method
