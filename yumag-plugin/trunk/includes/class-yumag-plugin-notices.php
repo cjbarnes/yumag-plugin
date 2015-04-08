@@ -71,13 +71,18 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'slug'                => 'notice',
 			'with_front'          => true,
 			'pages'               => true,
-			'feeds'               => true,
+			'feeds'               => true
 		);
 		$supports = array(
-			'editor',
 			'thumbnail',
 			'comments',
 			'custom-fields'
+		);
+		$capabilities = array(
+			'edit_posts'          => 'edit_posts',
+			'edit_others_posts'   => 'edit_others_posts',
+			'publish_posts'       => 'edit_others_posts',
+			'read_private_posts'  => 'read_private_posts'
 		);
 		$args = array(
 			'label'               => __( 'yumag_notice', 'yumag-plugin' ),
@@ -99,6 +104,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'publicly_queryable'  => true,
 			'rewrite'             => $rewrite,
 			'capability_type'     => 'post',
+			'capabilities'        => $capabilities
 		);
 		register_post_type( 'yumag_notice', $args );
 
