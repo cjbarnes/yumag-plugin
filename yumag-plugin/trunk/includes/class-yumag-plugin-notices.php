@@ -91,7 +91,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'supports'            => $supports,
 			'taxonomies'          => array( 'post_tag', ' yumag_notice_type' ),
 			'hierarchical'        => false,
-			'public'              => true,
+			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_position'       => 7,
