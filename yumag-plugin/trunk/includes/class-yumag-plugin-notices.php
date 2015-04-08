@@ -40,6 +40,9 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 		// Move the Notice Type metabox to the top of the main Edit Notice page.
 		add_action( 'add_meta_boxes_yumag_notice', array( $this, 'move_meta_boxes' ), 1 );
 
+		// Save an entry in the custom post type.
+		add_action( 'save_post', array( $this, 'save_notice' ), 10, 3 );
+
 	}
 
 	/**
@@ -204,6 +207,45 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 				array( 'taxonomy' => 'yumag_notice_type' )
 			);
 
+
+		}
+
+	}
+
+	/**
+	 * Additional code to run on creation/editing of a notice.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int  $post_id The post ID.
+	 * @param post $post    The post object.
+	 * @param bool $update  Whether this is an existing post being updated o
+	 *                      not.
+	 */
+	public function save_notice( $post_id, $post, $update ) {
+
+		// Check this is the right type of post, and it isn't just an autosave.
+		if ( ( 'yumag_notice' !== $post->post_type ) || wp_is_post_revision( $post_id ) ) {
+			return;
+		}
+
+		/*
+		 * Create a title for the post based on the submitter's name (which is
+		 * a required field.)
+		 */
+		if ( isset( $_REQUEST['wpcf']['submission_name'] ) ) {
+
+			// Don't re-run this action in an infinite loop!
+			remove_action( 'save_post', array( $this, 'save_notice' ), 10 );
+
+			$edits = array(
+				'ID'         => $post_id,
+				'post_title' => $_REQUEST['wpcf']['submission_name'] . ' - ' . $post->post_date
+			);
+			wp_update_post( $edits );
+
+			// Reinstate the action hook.
+			add_action( 'save_post', array( $this, 'save_notice' ), 10, 3 );
 
 		}
 
