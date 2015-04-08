@@ -78,12 +78,6 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'comments',
 			'custom-fields'
 		);
-		$capabilities = array(
-			'edit_posts'          => 'edit_posts',
-			'edit_others_posts'   => 'edit_others_posts',
-			'publish_posts'       => 'edit_others_posts',
-			'read_private_posts'  => 'read_private_posts'
-		);
 		$args = array(
 			'label'               => __( 'yumag_notice', 'yumag-plugin' ),
 			'description'         => __( 'Alumni submissions to yu magazine', 'yumag-plugin' ),
@@ -103,8 +97,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'rewrite'             => $rewrite,
-			'capability_type'     => 'post',
-			'capabilities'        => $capabilities
+			'capability_type'     => 'yumag_notice'
 		);
 		register_post_type( 'yumag_notice', $args );
 
