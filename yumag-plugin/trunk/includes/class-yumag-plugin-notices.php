@@ -37,6 +37,9 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 		// Register taxonomies for the Notices custom post type.
 		add_action( 'init', array( $this, 'register_notices_taxonomy' ), 1 );
 
+		// Move the Notice Type metabox to the top of the main Edit Notice page.
+		add_action( 'add_meta_boxes_yumag_notice', array( $this, 'move_meta_boxes' ), 1 );
+
 	}
 
 	/**
@@ -172,6 +175,37 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 
 		// Make sure the taxonomy/custom-post-type link was made.
 		register_taxonomy_for_object_type( 'yumag_notice_type', 'yumag_notice' );
+
+	}
+
+	/**
+	 * Move Notice Type taxonomy metabox into the main column.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @global $wp_meta_boxes
+	 */
+	public function move_meta_boxes() {
+		global $wp_meta_boxes;
+
+		$post_type = 'yumag_notice';
+		$box_name = 'yumag_notice_typediv';
+
+		if ( isset( $wp_meta_boxes[ $post_type ]['side']['core'][ $box_name ] ) ) {
+
+			unset( $wp_meta_boxes[ $post_type ]['side']['core'][ $box_name ] );
+			add_meta_box(
+				$box_name,
+				_x( 'Notice Types', 'Taxonomy General Name', 'yumag-plugin' ),
+				'post_categories_meta_box',
+				$post_type,
+				'normal',
+				'high',
+				array( 'taxonomy' => 'yumag_notice_type' )
+			);
+
+
+		}
 
 	}
 
