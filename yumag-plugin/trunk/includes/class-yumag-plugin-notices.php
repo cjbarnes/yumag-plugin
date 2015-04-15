@@ -74,7 +74,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'not_found_in_trash'  => __( 'Not found in Trash', 'yumag-plugin' ),
 		);
 		$rewrite = array(
-			'slug'                => 'notice',
+			'slug'                => 'on-the-grapevine',
 			'with_front'          => true,
 			'pages'               => true,
 			'feeds'               => true
@@ -91,13 +91,13 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'supports'            => $supports,
 			'taxonomies'          => array( 'post_tag', ' yumag_notice_type' ),
 			'hierarchical'        => false,
-			'public'              => false,
+			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_position'       => 7,
 			'menu_icon'           => 'dashicons-testimonial',
 			'show_in_admin_bar'   => true,
-			'show_in_nav_menus'   => false,
+			'show_in_nav_menus'   => true,
 			'can_export'          => true,
 			'has_archive'         => true,
 			'exclude_from_search' => false,
