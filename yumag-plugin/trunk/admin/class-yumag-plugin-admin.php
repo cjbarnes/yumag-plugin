@@ -50,8 +50,11 @@ class YuMag_Plugin_Admin extends YuMag_Plugin_Singleton {
 	protected function define_hooks() {
 
 		// Enqueue public-facing styles and scripts.
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+
+		// Filter the hidden metaboxes on the Edit Post page.
+		add_filter( 'default_hidden_meta_boxes', array( $this, 'show_excerpt_by_default' ), 10, 2 );
 
 	}
 
@@ -107,6 +110,25 @@ class YuMag_Plugin_Admin extends YuMag_Plugin_Singleton {
 			false
 		);
 
+	}
+
+	/**
+	 * Filter which metaboxes should be hidden on the Edit Post page.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $hidden List of metaboxes to hide by default.
+	 * @param WP_Screen $screen The current screen object.
+	 * @return array Revised list of hidden metaboxes.
+	 */
+	public function show_excerpt_by_default( $hidden, $screen ) {
+
+		// Only on Post pages.
+		if ( ! empty( $screen ) && ( 'post' === $screen->post_type ) ) {
+			$hidden = array_diff( $hidden, array( 'postexcerpt' ) );
+		}
+
+		return $hidden;
 	}
 
 }
