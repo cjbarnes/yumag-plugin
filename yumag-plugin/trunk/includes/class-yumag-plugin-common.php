@@ -32,12 +32,14 @@ class YuMag_Plugin_Common extends YuMag_Plugin_Singleton {
 
 		// Include all other common-functionality classes.
 		require_once $path . 'includes/class-yumag-plugin-notices.php';
+		require_once $path . 'includes/class-yumag-plugin-image-credits.php';
 
 		/*
 		 * Instantiate classes. The Singleton classes’ constructors expect the
 		 * YuMag_Plugin class to be passed in as an argument.
 		 */
 		YuMag_Plugin_Notices::get_instance( $this->plugin );
+		YuMag_Plugin_Image_Credits::get_instance( $this->plugin );
 
 	}
 
