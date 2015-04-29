@@ -35,6 +35,34 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
+		/*
+		 * Action to attach more actions/filters to other plugins' hooks.
+		 * Called on plugins loaded so that I can get the instances of classy
+		 * plugins, for assembly of the callbacks.
+		 */
+		add_action( 'plugins_loaded', array( $this, 'define_third_party_hooks' ) );
+
+	}
+
+	/**
+	 * Attach more actions/filters to other plugins' hooks.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @global WidontPartDeux $widont The Widont plugin.
+	 */
+	public function define_third_party_hooks() {
+
+		global $widont;
+
+		// Add "Widon't" widows/orphans prevention filter to other fields.
+		if ( class_exists( 'WidontPartDeux' ) && method_exists( 'WidontPartDeux', 'widont' ) && isset( $widont ) ) {
+
+			// Subtitle field from WP Subtitle plugin.
+			add_filter( 'wps_subtitle', array( $widont, 'widont' ), 100 );
+
+		}
+
 	}
 
 	/**
