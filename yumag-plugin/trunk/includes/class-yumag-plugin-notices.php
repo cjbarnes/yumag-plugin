@@ -43,9 +43,6 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 		// Save an entry in the custom post type.
 		add_action( 'save_post', array( $this, 'save_notice' ), 10, 3 );
 
-		// Modify the public-site queries to make Notices filter options work.
-		add_action( 'pre_get_posts', array( $this, 'notice_queries' ) );
-
 	}
 
 	/**
