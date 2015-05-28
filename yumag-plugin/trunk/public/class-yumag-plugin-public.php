@@ -78,6 +78,9 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 		}
 
 		// Get user filters.
+		$type = ( isset( $_GET['type'] ) )
+			? urldecode( $_GET['type'] )
+			: '';
 		$department = ( isset( $_GET['department'] ) )
 			? urldecode( $_GET['department'] )
 			: '';
@@ -117,8 +120,20 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 			);
 		}
 
-		// Add meta query to the query object.
+		// Assemble taxonomy query.
+		$tax_query = array();
+		if ( $type && term_exists( $type, 'yumag_notice_type' ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'yumag_notice_type',
+				'field'    => 'slug',
+				'terms'    => esc_sql( $type )
+			);
+		}
+
+
+		// Add meta and taxonomy queries to the query object.
 		$query->set( 'meta_query', $meta_query );
+		$query->set( 'tax_query', $tax_query );
 
 	}
 

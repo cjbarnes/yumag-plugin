@@ -26,7 +26,8 @@ $plugin_common = YuMag_Plugin_Common::get_instance( $this->plugin );
  * $choices[ $meta_key ] = $meta_value
  */
 $choices = array();
-if ( ! empty( $wp_query->meta_query->queries ) && is_array( $wp_query->meta_query->queries ) ) {
+if ( ! empty( $wp_query->meta_query->queries )
+&& is_array( $wp_query->meta_query->queries ) ) {
 	$temp_choices = array_filter( $wp_query->meta_query->queries, function ( $q ) {
 		return ( ! empty( $q['value'] ) );
 	});
@@ -34,11 +35,41 @@ if ( ! empty( $wp_query->meta_query->queries ) && is_array( $wp_query->meta_quer
 		$choices[ $q2['key'] ] = $q2['value'];
 	}
 }
+if ( ! empty( $wp_query->tax_query->queries )
+&& is_array( $wp_query->tax_query->queries ) ) {
+
+	foreach ( $wp_query->tax_query->queries as $q ) {
+		if ( ! empty( $q['taxonomy'] )
+		&& ( 'yumag_notice_type' === $q['taxonomy'] )
+		&& ! empty( $q['terms'][0] ) ) {
+			$choices['yumag_notice_type'] = $q['terms'][0];
+		}
+	}
+
+}
 
 ?>
 <form class="notice-filter-form" method="get">
 
-	<!-- TODO: Notice Type categories -->
+	<!-- Category dropdown -->
+	<label class="notice-filter-label" for="yumag-notice-type"><?php echo esc_html_x( 'Category', 'Notices filtering form', 'yumag-plugin' ); ?></label>
+	<?php
+	$args = array(
+		'show_option_all' => _x( 'All categories', 'Notices filtering form', 'yumag-plugin' ),
+		'orderby'         => 'NAME',
+		'name'            => 'type',
+		'id'              => 'yumag-notice-type',
+		'class'           => 'notice-filter-field notice-filter-dropdown',
+		'taxonomy'        => 'yumag_notice_type',
+		'value_field'     => 'slug'
+	);
+	if ( ! empty( $choices[ 'yumag_notice_type' ] )
+	&& term_exists( $choices[ 'yumag_notice_type' ], 'yumag_notice_type' ) ) {
+		$term = get_term_by( 'slug', $choices[ 'yumag_notice_type' ], 'yumag_notice_type' );
+		$args['selected'] = $term->term_id;
+	}
+	wp_dropdown_categories( $args );
+	?>
 
 	<!-- Department dropdown -->
 	<label class="notice-filter-label" for="wpcf-submission-department"><?php echo esc_html_x( 'Department', 'Notices filtering form', 'yumag-plugin' ); ?></label>
