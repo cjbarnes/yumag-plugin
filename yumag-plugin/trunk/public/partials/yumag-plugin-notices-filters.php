@@ -143,6 +143,13 @@ if ( ! empty( $wp_query->tax_query->queries )
 <tr>
 	<td class="notice-filter-span-2" colspan="2">
 		<input class="notice-filter-button" type="submit" value="<?php echo esc_attr_x( 'Search', 'Notices filtering form submit button', 'yumag-plugin' ) ?>">
+		<?php if ( isset( $_GET['type'] )
+			|| isset( $_GET['department'] )
+			|| isset( $_GET['college'] )
+			|| isset( $_GET['class-of'] ) ) : ?>
+			<br>
+			<small class="notice-filter-reset"><a href="<?php echo get_post_type_archive_link( 'yumag_notice' ); ?>">Clear Search</a></small>
+		<?php endif; ?>
 	</td>
 </tr>
 
