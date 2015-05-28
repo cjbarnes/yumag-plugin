@@ -116,7 +116,7 @@ class YuMag_Plugin {
 		 */
 
 		$this->plugin_name = 'yumag-plugin';
-		$this->version = '1.0.0';
+		$this->version = '1.1.0';
 
 		$this->plugin_path = plugin_dir_path( dirname( __FILE__ ) );
 		$this->partials_path_public = $this->plugin_path . 'public/partials/';

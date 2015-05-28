@@ -17,7 +17,7 @@
  * Plugin Name:  Yu Magazine Plugin
  * Plugin URI:   http://www.yumagazine.co.uk/
  * Description:  **DO NOT REMOVE OR DEACTIVATE!** Contains custom features for Yu Magazine.
- * Version:      1.0.0
+ * Version:      1.1.0
  * Author:       cJ barnes
  * Author URI:   http://www.cjbarnes.co.uk/
  * License:      GPL-2.0+
