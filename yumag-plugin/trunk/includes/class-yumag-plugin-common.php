@@ -43,4 +43,31 @@ class YuMag_Plugin_Common extends YuMag_Plugin_Singleton {
 
 	}
 
+	/**
+	 * Retrieves a list of all unique meta values for a set post-meta key.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @global wpdb $wpdb The WordPress database class.
+	 *
+	 * @param string $key The meta key to retrieve values for.
+	 * @return array|false An array of meta values, or false if unsuccessful. If
+	 *                     there are no values, an empty array will be returned.
+	 */
+	public function get_post_meta_column( $key ) {
+		global $wpdb;
+
+		if ( empty( $key ) ) {
+			return false;
+		}
+
+		$sql = $wpdb->prepare( "
+			SELECT DISTINCT meta_value FROM {$wpdb->postmeta}
+			WHERE meta_key = '%s'
+		", $key );
+		$values = $wpdb->get_col( $sql );
+
+		return $values;
+	}
+
 }

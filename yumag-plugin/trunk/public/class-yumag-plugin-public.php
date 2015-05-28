@@ -38,6 +38,9 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 		 */
 		add_action( 'plugins_loaded', array( $this, 'define_third_party_hooks' ) );
 
+		// Hook in to each query before it is run.
+		add_action( 'pre_get_posts', array( $this, 'setup_notice_query' ) );
+
 	}
 
 	/**
@@ -59,6 +62,76 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 
 		}
 
+	}
+
+	/**
+	 * Gets notice-related query vars from URL and adds them to the main query.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param WP_Query $query The working query object.
+	 */
+	public function setup_notice_query( $query ) {
+
+		if ( is_admin() || ! $query->is_main_query() || ! $query->is_post_type_archive( 'yumag_notice' ) ) {
+			return;
+		}
+
+		// Get user filters.
+		$department = ( isset( $_GET['department'] ) )
+			? urldecode( $_GET['department'] )
+			: '';
+		$college = ( isset( $_GET['college'] ) )
+			? urldecode( $_GET['college'] )
+			: '';
+		$class_of = ( isset( $_GET['class-of'] ) )
+			? intval( $_GET['class-of'], 10 )
+			: 0;
+
+		// Check for valid Class Of date entry.
+		if ( ( intval( date( 'Y' ), 10 ) < $class_of ) || ( 1962 > $class_of ) ) {
+			$class_of = 0;
+		}
+
+		// Assemble meta query.
+		$meta_query = array( 'relation' => 'AND' );
+		if ( $department ) {
+			$meta_query[] = array(
+				'key' => 'wpcf-submission_department',
+				'value' => esc_sql( $department ),
+				'compare' => '='
+			);
+		}
+		if ( $college ) {
+			$meta_query[] = array(
+				'key' => 'wpcf-submission_college',
+				'value' => esc_sql( $college ),
+				'compare' => '='
+			);
+		}
+		if ( 0 !== $class_of ) {
+			$meta_query[] = array(
+				'key' => 'wpcf-submission_class_of',
+				'value' => $class_of,
+				'compare' => '='
+			);
+		}
+
+		// Add meta query to the query object.
+		$query->set( 'meta_query', $meta_query );
+
+	}
+
+	/**
+	 * Output a Notices search filters form.
+	 *
+	 * Called by the theme.
+	 *
+	 * @since 1.1.0
+	 */
+	public function display_filters() {
+		$path = $this->plugin->get_partials_path( 'public' );
+		require $path . 'yumag-plugin-notices-filters.php';
 	}
 
 }
