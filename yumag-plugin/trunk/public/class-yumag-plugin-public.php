@@ -130,7 +130,6 @@ class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 			);
 		}
 
-
 		// Add meta and taxonomy queries to the query object.
 		$query->set( 'meta_query', $meta_query );
 		$query->set( 'tax_query', $tax_query );
