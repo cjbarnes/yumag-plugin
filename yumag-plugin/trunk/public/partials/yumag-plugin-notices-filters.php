@@ -49,7 +49,7 @@ if ( ! empty( $wp_query->tax_query->queries )
 }
 
 ?>
-<form class="notice-filter-form" method="get">
+<form class="notice-filter-form" method="get" action="<?php echo get_post_type_archive_link( 'yumag_notice' ); ?>">
 
 <table class="notice-filter-table">
 <tbody>
