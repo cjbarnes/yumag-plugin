@@ -43,6 +43,9 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 		// Save an entry in the custom post type.
 		add_action( 'save_post', array( $this, 'save_notice' ), 10, 3 );
 
+		// Modify the public-site queries to make Notices filter options work.
+		add_action( 'pre_get_posts', array( $this, 'notice_queries' ) );
+
 	}
 
 	/**
@@ -100,7 +103,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 			'show_in_nav_menus'   => true,
 			'can_export'          => true,
 			'has_archive'         => true,
-			'exclude_from_search' => false,
+			'exclude_from_search' => true,
 			'publicly_queryable'  => true,
 			'rewrite'             => $rewrite,
 			'capability_type'     => 'yumag_notice'
@@ -202,7 +205,7 @@ class YuMag_Plugin_Notices extends YuMag_Plugin_Singleton {
 				_x( 'Notice Types', 'Taxonomy General Name', 'yumag-plugin' ),
 				'post_categories_meta_box',
 				$post_type,
-				'normal',
+				'side',
 				'high',
 				array( 'taxonomy' => 'yumag_notice_type' )
 			);
