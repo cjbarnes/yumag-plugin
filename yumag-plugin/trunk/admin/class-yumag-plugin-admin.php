@@ -52,6 +52,9 @@ class YuMag_Plugin_Admin extends YuMag_Plugin_Singleton {
 		// Filter the hidden metaboxes on the Edit Post page.
 		add_filter( 'default_hidden_meta_boxes', array( $this, 'show_excerpt_by_default' ), 10, 2 );
 
+		// Alter query arguments for the Link dialog in the editor.
+		add_filter( 'wp_link_query_args', array( $this, 'show_drafts_in_link_list' ) );
+
 	}
 
 	/**
@@ -71,6 +74,33 @@ class YuMag_Plugin_Admin extends YuMag_Plugin_Singleton {
 		}
 
 		return $hidden;
+	}
+
+	/**
+	 * Filter to allow easy linking to Draft or Pending posts, and to exclude
+	 * things we shouldn't be linking to (e.g. Notices).
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param array $query Arguments for the links-list WP_Query.
+	 * @return array The modified query arguments.
+	 */
+	public function show_drafts_in_link_list( $query ) {
+
+		// Exclude Notices from the link options.
+		$key = array_search( 'yumag_notice', $query['post_type'] );
+		if ( $key ) {
+			unset( $query['post_type'][ $key ] );
+		}
+
+		// Include not-yet-published posts.
+		$statuses = $query['post_status'];
+		if ( ! is_array( $statuses ) ) {
+			$statuses = array( $statuses );
+		}
+		$query['post_status'] = $statuses + array( 'draft', 'pending', 'future' );
+
+		return $query;
 	}
 
 }
