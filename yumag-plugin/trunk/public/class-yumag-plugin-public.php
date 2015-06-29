@@ -21,6 +21,30 @@
 class YuMag_Plugin_Public extends YuMag_Plugin_Singleton {
 
 	/**
+	 * Load the required dependencies for the public area.
+	 *
+	 * Called on this class's construction by the parent class method
+	 * `YuMag_Plugin_Singleton::__construct()`.
+	 *
+	 * @since 1.2.0
+	 * @access protected
+	 */
+	protected function load_dependencies() {
+
+		$path = $this->plugin->get_plugin_path();
+
+		// Include all other common-functionality classes.
+		require_once $path . 'public/class-yumag-plugin-social-sharing.php';
+
+		/*
+		 * Instantiate classes. The Singleton classes’ constructors expect the
+		 * YuMag_Plugin class to be passed in as an argument.
+		 */
+		YuMag_Plugin_Social_Sharing::get_instance( $this->plugin );
+
+	}
+
+	/**
 	 * Register all hooks for actions and filters in this class.
 	 *
 	 * Called on this class's construction by the parent class method
