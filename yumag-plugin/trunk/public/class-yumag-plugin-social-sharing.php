@@ -50,7 +50,7 @@ class YuMag_Plugin_Social_Sharing extends YuMag_Plugin_Singleton {
 			$hashtags = 'yumag';
 			$twitter_name = 'YorkAlumni';
 			$title = get_the_title();
-			$facebook_url = sprintf( 'https://www.facebook.com/dialog/share?app_id=%2$s&display=page&href=%1$s',
+			$facebook_url = sprintf( 'https://www.facebook.com/dialog/share?app_id=%2$s&display=page&href=%1$s&redirect_uri=%1$s',
 				$link,
 				$facebook_app_id
 			);
